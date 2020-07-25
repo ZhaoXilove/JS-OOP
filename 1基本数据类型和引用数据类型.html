@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo2</title>
+</head>
+<body>
+<script>
+    /*  let a = b =10;*/
+
+    /* let x = 10;*/
+
+    /* let y = x;
+
+    x = 20;
+    console.log(x);
+    console.log(y);
+    */
+
+    /*
+    * 基本数据类型:
+    * 因为x 和 y的变量存储是相互独立的,
+    *  所以x 变量被重新赋值的时候y 是不会有变量的,
+    *  y 的值就好比在一开始从x 复制 到 y上面, 就再没有任何关系了
+    */
+
+    let x = {value: 10};
+    let y = {...x};
+    x.value = 20;
+
+    /*  引用数据类型:
+    * 因为对象中的属性键值对形式, 然后x存储在内存地址中, 所以y拷贝的是x的内存地址, 而不是
+    * 直接拷贝里面的值, 所以x变化的时候y也会变化
+    * */
+
+    /*
+    * 值类型复制值
+    * 对象的引用类型复制引用
+    *
+    * increase(number)  // 11
+    * let number        //10
+    *
+    * 如果是对象形式, 两个都是11
+    * */
+    let number = 10;
+    function increase(number) {
+        number++;
+    }
+    increase(number);
+</script>
+</body>
+</html>

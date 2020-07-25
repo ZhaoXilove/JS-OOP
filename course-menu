@@ -1,0 +1,30 @@
+Course name: Object-oriented Programming(面向对象编程(一种编程风格))
+
+1. Objects
+2. prototypes
+3. Prototypical Inheritance
+4. ES6 Classes
+5. Modules
+
+js有三种类型的数据
+1. 基本数据类型(string number之类的)
+2. 引用数据类型(数组和对象)
+3. Symbol类型(唯一的)
+
+Object基本概念
+1. create object(工厂函数  构造函数)
+  每个javascript中的对象都有一个叫构造函数的属性
+  比如有时候使用let x = {}的形式, js会有内建函数, 实际转化的代码是let x = new Object()
+  1.1
+   property: 是用来保存值的
+   methods: 是用来定义一些逻辑的
+  1.2
+   new的原理
+   1.2.1 首先new操作符创建了一个空对象
+   1.2.2 然后它设置this指向这个对象
+   1.2.3 最后它从函数返回这个对象
+2. factory functions
+3. primitives and reference types(值类型和引用类型)
+4. 如何操作对象的属性(增减属性, 枚举属性)
+5. 定义私有属性
+6. 读取器(get方法) 和 设置器(set方法)

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作对象属性以及删除属性</title>
+</head>
+<body>
+<script>
+    //构造函数方式
+    function Circle(radius) {
+        this.radius = radius
+        this.draw = function () {
+            console.log('draw');
+        }
+    }
+
+    //对象实例
+    const circle = new Circle(10);
+    //增加一个属性
+    circle.location = {x: 1};
+    //属性变量
+    const propertyName = 'center location'
+    //动态增加属性
+    circle[propertyName] = {x: 2};
+
+    //删除属性
+    delete circle['location'];
+
+    console.log({circle})
+    /*
+    * js中对象是动态的, 意味着你可以在创建对象后添加或者删除属性
+    * 操作一些动态的属性时, 应用变量保存起来, 增强代码灵活性和维护性
+    * 比如数据库中给我们返回了用户信息, 比如密码或者银行卡信息, 就可以使用 delete关键字 动态删除掉属性
+    * */
+</script>
+</body>
+</html>
