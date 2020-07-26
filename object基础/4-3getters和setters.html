@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>getters和setters</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				this.radius = radius
+
+				//默认位置
+				let = defaultLocation = { x: 0, y: 0 }
+
+				this.draw = function () {
+					console.log('draw')
+				}
+
+				//getters读取方法
+				this.getDefaultLocation = function () {
+					//用getters函数返回一个私有变量
+					//因为这里用到了闭包, 可以子函数访问父函数的局部变量
+					return defaultLocation
+				}
+
+				//给私有函数添加属性或方法
+				Object.defineProperty(this, 'defaultLocation', {
+					get: function () {
+						return defaultLocation
+					},
+					set: function (value) {
+						//没有属性时抛出error
+						if (!value.x || !value.y) {
+							throw new Error('请初始化 location')
+						}
+						defaultLocation = value
+					},
+				})
+			}
+			const circle = new Circle(10)
+			circle.getDefaultLocation()
+			circle.draw()
+
+			/**
+			 * 因为属性是私有的, 有时候不需要修改它, 但有时候需要读取它,
+			 * 所以需要用到 getters 和 setters
+			 */
+		</script>
+	</body>
+</html>

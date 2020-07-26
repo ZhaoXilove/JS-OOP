@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>抽象</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				this.radius = radius
+
+				this.defaultLocation = { x: 0, y: 0 }
+
+				//隐藏的函数细节
+				this.computeOptimumLocation = function (factory) {}
+				this.draw = function () {
+					//在此调用, 传递参数
+					this.computeOptimumLocation()
+
+					console.log('draw')
+				}
+			}
+
+			const circle = new Circle(10)
+
+			circle.draw()
+			/*
+			 * 用抽象的手法隐藏一些不必要展示的实现细节,
+			 * 暴露出需要的方法或属性即可
+			 * */
+		</script>
+	</body>
+</html>

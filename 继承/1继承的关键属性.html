@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>1继承的关键属性</title>
+	</head>
+	<body>
+		<script>
+			let person = { name: 'Mosh' }
+			// 获取到自身原型对象
+			let objectBase = Object.getPrototypeOf(person)
+
+			Object.defineProperty(person, 'name', {
+				writable: false, //设置是否可重写属性或方法
+				enumerable: true, //设置是否可枚举
+				configurable: false, //是否可以配置一个属性(删除修改属性之类的)
+			})
+
+			delete person.name
+			console.log(person)
+			/**
+			 *继承有单继承和多重继承
+			 *除了根对象以外都有原型
+			 * .__proto__ 和 .prototype效果是一样的
+			 *
+			 */
+		</script>
+	</body>
+</html>

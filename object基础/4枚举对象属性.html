@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>枚举对象属性</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				this.radius = radius
+				this.draw = function () {
+					console.log('draw')
+				}
+			}
+
+			// Circle.prototype.name = '1';
+			const circle = new Circle(10)
+			//枚举属性
+			for (let key in circle) {
+				//确保有key后再遍历
+				if (circle.hasOwnProperty(key)) {
+					console.log(key, circle[key])
+				}
+			}
+
+			//获得对象中所有的key
+			const keys = Object.keys(circle)
+			console.log(keys)
+
+			// keys.forEach(item => {
+			//     console.log(typeof circle[item])
+			// })
+
+			const key = Object.getOwnPropertyNames(circle)
+			console.log(key)
+
+			//检查对象是否包含某个属性或者方法, 可以使用in操作符
+
+			// if ('radius' in circle){
+			//     console.log("circle包含了radius")
+			// }
+		</script>
+	</body>
+</html>

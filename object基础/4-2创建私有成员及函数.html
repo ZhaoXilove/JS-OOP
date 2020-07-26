@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>4.2抽象的实现(隐藏实现细节)</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				/*使用内部变量可以轻松隐藏属性
+				 *也可以说是对象的私有成员
+				 **/
+				//let color = 'red'
+
+				//这种方式this, 才会暴露属性
+				this.radius = radius
+
+				let = defaultLocation = { x: 0, y: 0 }
+
+				//隐藏的函数细节
+				computeOptimumLocation = function (factory) {
+					console.log('computeOptimumLocation 被调用了!')
+				}
+				this.draw = function () {
+					//在此调用, 传递参数
+					computeOptimumLocation(1)
+					console.log('draw')
+				}
+			}
+			const circle = new Circle(10)
+			circle.draw()
+
+			/*
+			 * 使用this为对象内部提供属性
+			 * 使用局部变量为对象内部隐藏一些属性或方法的实现细节
+			 * 当函数调用过后, 内部变量就离开了函数作用域
+			 * */
+		</script>
+	</body>
+</html>
