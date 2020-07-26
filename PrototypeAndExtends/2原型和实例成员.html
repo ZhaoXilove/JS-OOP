@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>2原型和实例成员</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				//实例成员
+				this.radius = radius
+				this.move = function () {
+					console.log('move')
+				}
+			}
+
+			//给Circle原型上添加方法, 原型成员
+			Circle.prototype.draw = function () {
+				/**
+				 *也可以在原型中调用成员方法
+				 *其他实例也会自动调用的
+				 */
+				//this.move()
+
+				console.log('draw')
+			}
+
+			const c1 = new Circle(1)
+			const c2 = new Circle(1)
+
+			console.log({ c1 })
+			console.log({ c2 })
+
+			// 重写Circle原型的toString方法
+			Circle.prototype.toString = function () {
+				return `Circle function rewrite toString :${this.radius}!`
+			}
+
+			/**
+			 * c1实例运行时, 会先在js运行环境检查circle对象, 但circle对象中没有这个方法,
+			 * 然后它就去检查原型对象, 也就是Circle.prototype, 如果重写了Object的
+			 * toString也被重写了, 它还是会调用circle对象的toString, 因为它更符合就近原则
+			 */
+
+			/**
+			 * 把draw方法抽离到prototype中,
+			 * 这样实例化的时候就不用每个实例都自己创建一个draw方法了,
+			 * 而是直接继承了draw方法
+			 */
+		</script>
+	</body>
+</html>

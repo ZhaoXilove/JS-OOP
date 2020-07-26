@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>2-1枚举对象原型成员</title>
+	</head>
+	<body>
+		<script>
+			function Circle(radius) {
+				this.radius = radius
+				this.move = function () {
+					console.log('move')
+				}
+			}
+
+			Circle.prototype.draw = function () {
+				console.log('draw')
+			}
+
+			const c1 = new Circle(1)
+			//获取到所有成员属性
+			console.log(Object.keys(c1))
+
+			for (const key in c1) {
+				//当前成员
+				if (c1.hasOwnProperty(key)) {
+					//const element = c1[key]
+					console.log(key)
+				}
+			}
+			/**
+			 * 内存中只有一个原型对象实例, 所以说所有修改都是可见的
+			 * 一般不要动js的内置对象, 因为之后用的其他库可能会有依赖
+			 */
+		</script>
+	</body>
+</html>
