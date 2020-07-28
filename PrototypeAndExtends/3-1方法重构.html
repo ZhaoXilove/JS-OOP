@@ -8,44 +8,44 @@
 	<body>
 		<script>
 			function extend(Child, Parent) {
-				Child.prototype = Object.create(Child.prototype)
-				Child.prototype.constructor = Child
+				Child.prototype = Object.create(Parent.prototype);
+				Child.prototype.constructor = Child;
 			}
 
 			//父对象
 			function Shape() {}
 			Shape.prototype.duplicate = function () {
-				console.log('父类: duplicate')
-			}
+				console.log('父类: duplicate');
+			};
 
 			//子对象
 			function Circle(radius) {}
 
-			extend(Circle, Shape)
+			extend(Circle, Shape);
 
 			//多态的引入:
 			//把从父类中继承过来的 duplicate 方法重写
 			Circle.prototype.duplicate = function () {
 				//如果还想调用父类的 duplicate 方法时, 可以直接调用父类原型上的方法
 				//想把父类的 duplicate 方法指向子类Circle对象时, 可以调用call方法手动把this指向Circle对象
-				Shape.prototype.duplicate.call(this)
+				Shape.prototype.duplicate.call(this);
 
-				console.log('子类方法重写: duplicate circle')
-			}
+				console.log('子类方法重写: duplicate circle');
+			};
 
 			function Square(params) {}
-			extend(Square, Shape)
+			extend(Square, Shape);
 			Square.prototype.duplicate = function () {
-				console.log('子类方法重写: duplicate square')
-			}
+				console.log('子类方法重写: duplicate square');
+			};
 
 			//Circle 实例
 			//const c = new Circle()
-			const shapes = [new Circle(), new Square()]
+			const shapes = [new Circle(), new Square()];
 
 			for (let shape of shapes) {
 				//多态的使用, 一个数组, 每个元素都有自己的形态, 就叫一个形式, 多种形态
-				shape.duplicate()
+				shape.duplicate();
 			}
 		</script>
 	</body>

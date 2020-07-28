@@ -7,45 +7,66 @@
 	</head>
 	<body>
 		<script>
+			function C(name) {
+				this.name = name;
+			}
+			C.prototype.say = function () {
+				console.log(this.name);
+			};
+
+			function myNew(constructor, ...source) {
+				const obj = {};
+				//obj想把constructor里面的成员拿进来
+				const result = constructor.apply(obj, source);
+				obj.__proto__ = create(constructor.prototype); //prototype只有函数才有    __proto__只有对象才有  //继承prototype
+				return typeof result === 'object' ? result : obj;
+			}
+			const c = myNew(C, '张三');
+
+			function create(parent) {
+				function fn() {}
+				fn.__proto__ = parent;
+				return new fn();
+			}
 			//手动实现extends
 			function extend(Child, Parent) {
 				// 让 Child 对象去继承 Parent 父对象
-				Child.prototype = Object.create(Child.prototype)
+				Child.prototype = create(Parent.prototype);
 				//不设置的话 Child 的就没有constructor, 并且指向了 Parent
-				Child.prototype.constructor = Child
+				Child.prototype.constructor = Child;
 			}
 
 			//父对象
 			function Shape(color) {
-				this.color = color
+				this.color = color;
 			}
 			Shape.prototype.duplicate = function () {
-				console.log('duplicate')
-			}
+				console.log('duplicate');
+			};
 
 			//子对象
 			function Circle(radius) {
 				//super() 方法的实现
 				//把Shape父类的this指向到radius内, 并传递color属性
-				Shape.call(this, color)
-				this.radius = radius
+				Shape.call(Circle, color);
+				this.radius = radius;
 			}
-
-			extend(Circle, Shape)
-
 			//子对象原型上的方法
+
+			extend(Circle, Shape);
+
 			Circle.prototype.draw = function () {
-				console.log('draw')
-			}
+				console.log('draw');
+			};
 
 			function Square(size) {
-				this.size = size
+				this.size = size;
 			}
 
-			extend(Square, Shape)
+			extend(Square, Shape);
 
-			const s = new Shape()
-			const c = new Circle(1, 'red')
+			const s = new Shape();
+			const c = new Circle(1, 'red');
 		</script>
 	</body>
 </html>
