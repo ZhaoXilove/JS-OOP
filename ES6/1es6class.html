@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>1.es6class</title>
+	</head>
+	<body>
+		<script>
+			//Circle类
+			class Circle {
+				//构造器
+				constructor(radius) {
+					//成员变量
+					this.radius = radius
+					//给成员中添加方法
+					this.size = function () {
+						console.log('size')
+					}
+				}
+
+				//给原型中添加方法
+				draw() {
+					console.log('draw')
+				}
+			}
+			const circle = new Circle(20)
+			console.log(circle)
+		</script>
+	</body>
+</html>

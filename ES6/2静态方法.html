@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>静态方法</title>
+	</head>
+	<body>
+		<script>
+			class Circle {
+				constructor(radius) {
+					this.radius = radius
+				}
+
+				//实例方法, 和类有关联的方法
+				draw() {}
+
+				//静态方法, 和类没有关联的方法, 需要时调用
+				//也可以说是不属于具体实例的工具方法
+				static parse(str) {
+					const radius = JSON.parse(str).radius
+					return new Circle(radius)
+				}
+			}
+
+			//const circle = new Circle()
+
+			//静态方法需要直接用类去调用, 而不是从某个特定的对象那调用
+			const circle = Circle.parse('{"radius": 1}')
+			console.log(circle)
+		</script>
+	</body>
+</html>

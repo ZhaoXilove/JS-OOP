@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>4.mixins组合</title>
+	</head>
+	<body>
+		<script>
+			//使用Mixin组合
+			function mixin(target, ...sources) {
+				Object.assign(target, ...sources)
+			}
+
+			//去吃饭方法
+			const canEat = {
+				eat: function () {
+					this.hunger--
+					console.log('吃饭中!')
+				},
+			}
+
+			//去走路方法
+			const canWalk = {
+				walk: function () {
+					console.log('走路中!')
+				},
+			}
+
+			//去游泳方法
+			const canSwim = {
+				swim: function () {
+					console.log('游泳中!')
+				},
+			}
+
+			//把 canEat对象 和 canWalk对象组合到 Person对象中
+			//assign() 浅拷贝方法 1.被拷贝的对象 剩余参数. 拷贝的对象
+
+			//const person = Object.assign({}, canEat, canWalk)
+
+			//使用 mixin方法
+			mixin(Goldfish.prototype, canSwim, canEat)
+			mixin(Person.prototype, canEat, canWalk)
+
+			//构造函数方式组合
+			//const person = Object.assign(Person.prototype, canEat, canWalk)
+
+			function Goldfish() {}
+			function Person() {}
+			//Object.assign(Goldfish.prototype, canSwim, canEat)
+
+			const goldfish = new Goldfish()
+			const person = new Person()
+			console.log(person)
+			console.log(goldfish)
+		</script>
+	</body>
+</html>

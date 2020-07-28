@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>3原型继承</title>
+	</head>
+	<body>
+		<script>
+			//手动实现extends
+			function extend(Child, Parent) {
+				// 让 Child 对象去继承 Parent 父对象
+				Child.prototype = Object.create(Child.prototype)
+				//不设置的话 Child 的就没有constructor, 并且指向了 Parent
+				Child.prototype.constructor = Child
+			}
+
+			//父对象
+			function Shape(color) {
+				this.color = color
+			}
+			Shape.prototype.duplicate = function () {
+				console.log('duplicate')
+			}
+
+			//子对象
+			function Circle(radius) {
+				//super() 方法的实现
+				//把Shape父类的this指向到radius内, 并传递color属性
+				Shape.call(this, color)
+				this.radius = radius
+			}
+
+			extend(Circle, Shape)
+
+			//子对象原型上的方法
+			Circle.prototype.draw = function () {
+				console.log('draw')
+			}
+
+			function Square(size) {
+				this.size = size
+			}
+
+			extend(Square, Shape)
+
+			const s = new Shape()
+			const c = new Circle(1, 'red')
+		</script>
+	</body>
+</html>
