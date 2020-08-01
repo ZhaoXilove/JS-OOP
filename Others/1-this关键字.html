@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>this关键字</title>
+	</head>
+	<body>
+		<script>
+			/* 防止c.draw这种操作, 会不小心修改了全局的变量
+			   防止变量被覆盖 */
+			'use strict';
+			const Circle = function () {
+				this.draw = function () {
+					console.log('draw');
+				};
+			};
+
+			const c = new Circle();
+
+			//从对象中调用, this指向调用函数者
+			//方法调用
+			c.draw();
+
+			//独立函数调用, this指向window
+			const draw = c.draw;
+			//函数调用
+			draw();
+		</script>
+	</body>
+</html>

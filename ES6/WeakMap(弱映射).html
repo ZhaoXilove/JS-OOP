@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WeakMap(弱映射)</title>
+	</head>
+	<body>
+		<script>
+			//实际是字典里面的键是对象, 而值可以任意
+			const _radius = new WeakMap();
+			const _move = new WeakMap();
+			class Circle {
+				constructor(radius) {
+					_radius.set(this, radius);
+					_move.set(this, function () {
+						console.log('move', this);
+					});
+				}
+
+				draw() {
+					console.log(_radius.get(this));
+				}
+			}
+
+			const c = new Circle(1);
+		</script>
+	</body>
+</html>
